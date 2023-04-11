@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 # Disable websocket connection log spam
 logging.getLogger('websockets.server').setLevel(logging.ERROR)
 
-server_port = 80
+server_port = int(os.environ.get('PORT', '80'))
 
 try:
     # Berlin.de requires the user agent to include your email.
