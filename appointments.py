@@ -8,6 +8,8 @@ import pytz
 import requests
 import time
 import websockets
+import sys
+import AppKit
 
 
 logging.basicConfig(
@@ -97,6 +99,9 @@ def look_for_appointments():
     try:
         appointments = get_appointments()
         delay = 180
+        if (len(appointments) > 0):
+            AppKit.NSBeep()
+
         logger.info(f"Found {len(appointments)} appointments: {[datetime_to_json(d) for d in appointments]}")
         return {
             'time': datetime_to_json(datetime.now()),
